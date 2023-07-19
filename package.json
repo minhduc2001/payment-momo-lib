@@ -1,8 +1,9 @@
 {
-  "name": "momo-payment",
-  "version": "1.0.3",
+  "name": "momo-payment-api",
+  "version": "1.0.0",
   "description": "payment momo lib develop by minhduc",
   "main": "lib/index.js",
+  "types": "src/index.ts",
   "scripts": {
     "dev": "npx nodemon",
     "build": "tsc"
@@ -16,7 +17,7 @@
     "momo"
   ],
   "author": "minhduc",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/minhduc2001/payment-momo-lib/issues"
   },

@@ -1,6 +1,6 @@
 import axios from "axios";
 import * as crypto from "crypto";
-import { ICreatePayment, IRefundPayment, IResponsePayment } from "./interface";
+import { ICreatePayment, IRefundPayment, IResponsePayment } from "./type";
 
 export class MomoPayment {
   private readonly partnerCode: string;
@@ -30,12 +30,7 @@ export class MomoPayment {
       ) {
         throw new Error("invalid input");
       }
-      if (input?.extraData) input.extraData = "";
-      if (input?.lang) input.lang = "en";
-      if (input?.requestType) input.requestType = "captureWallet";
-
       const url = this._getURL() + "/create";
-      const redirectUrl = "https://momo.vn/return";
 
       const signatureRaw =
         "accessKey=" +
@@ -43,7 +38,7 @@ export class MomoPayment {
         "&amount=" +
         input.amount +
         "&extraData=" +
-        input.extraData +
+        (input.extraData ?? "") +
         "&ipnUrl=" +
         input.ipnUrl +
         "&orderId=" +
@@ -57,7 +52,7 @@ export class MomoPayment {
         "&requestId=" +
         input.requestId +
         "&requestType=" +
-        input.requestType;
+        (input.requestType ?? "captureWallet");
 
       const signature = crypto
         .createHmac("sha256", this.secretKey)
@@ -73,10 +68,10 @@ export class MomoPayment {
         orderInfo: input.orderInfo,
         redirectUrl: input.redirectUrl,
         ipnUrl: input.ipnUrl,
-        extraData: input.extraData,
-        requestType: input.requestType,
+        extraData: input.extraData ?? "",
+        requestType: input.requestType ?? "captureWallet",
         signature: signature,
-        lang: input.lang,
+        lang: input.lang ?? "en",
       };
 
       const res = await axios<IResponsePayment>({
@@ -85,11 +80,9 @@ export class MomoPayment {
         url,
         data,
       });
-      console.log(res);
 
       return res.data;
     } catch (e) {
-      console.log(e);
       throw e;
     }
   }
@@ -98,7 +91,6 @@ export class MomoPayment {
     if (!input.orderId || !input.amount || !input.transId || !input.requestId) {
       throw new Error("Invalid input");
     }
-    if (input?.lang) input.lang = "en";
 
     const url = this._getURL() + "/refund";
 
@@ -114,7 +106,7 @@ export class MomoPayment {
       orderId: input.orderId,
       amount: input.amount,
       transId: input.transId,
-      lang: input.lang,
+      lang: input.lang ?? "en",
       signature,
     });
     const res = await axios({
@@ -132,7 +124,7 @@ export class MomoPayment {
       return "https://test-payment.momo.vn/v2/gateway/api";
     }
 
-    if (this.environment === "product") {
+    if (this.environment === "production") {
       return "https://payment.momo.vn/";
     }
 
