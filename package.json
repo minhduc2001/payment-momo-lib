@@ -8,12 +8,20 @@
     "build": "rimraf ./dist && tsc && tsc-alias",
     "start": "node dist/index.js"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com:minhduc2001/payment-momo-lib.git"
+  },
   "keywords": [
     "payment",
     "momo"
   ],
   "author": "minhduc",
   "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/minhduc2001/payment-momo-lib/issues"
+  },
+  "homepage": "https://github.com/minhduc2001/payment-momo-lib#readme",
   "devDependencies": {
     "@types/axios": "^0.14.0",
     "@types/node": "^20.4.2",
