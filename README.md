@@ -1,5 +1,7 @@
 ## Process flow
 
+![Flow](https://raw.githubusercontent.com/minhduc2001/payment-momo-lib/128c128056ef44c7f3713d81bf8fe5b464c8240b/flow-momo.svg)
+
 ## Installation
 
 The first, Momo partner must be successfully registered.
