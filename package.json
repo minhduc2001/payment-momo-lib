@@ -1,0 +1,31 @@
+{
+  "name": "momo-payment",
+  "version": "1.0.0",
+  "description": "payment momo lib develop by minhduc",
+  "main": "index.js",
+  "scripts": {
+    "dev": "npx nodemon",
+    "build": "rimraf ./dist && tsc && tsc-alias",
+    "start": "node dist/index.js"
+  },
+  "keywords": [
+    "payment",
+    "momo"
+  ],
+  "author": "minhduc",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/axios": "^0.14.0",
+    "@types/node": "^20.4.2",
+    "nodemon": "^3.0.1",
+    "rimraf": "^5.0.1",
+    "ts-node": "^10.9.1",
+    "tsc-alias": "^1.8.7",
+    "tsconfig-paths": "^4.2.0",
+    "typescript": "^5.1.6"
+  },
+  "dependencies": {
+    "axios": "^1.4.0",
+    "crypto": "^1.0.1"
+  }
+}
