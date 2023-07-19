@@ -1,8 +1,8 @@
 import axios from "axios";
 import * as crypto from "crypto";
-import { ICreatePayment, IResponsePayment } from "./interface";
+import { ICreatePayment, IRefundPayment, IResponsePayment } from "./interface";
 
-export class MomoPaymentService {
+export class MomoPayment {
   private readonly partnerCode: string;
   private readonly accessKey: string;
   private readonly secretKey: string;
@@ -88,7 +88,43 @@ export class MomoPaymentService {
       console.log(res);
 
       return res.data;
-    } catch (e) {}
+    } catch (e) {
+      console.log(e);
+      throw e;
+    }
+  }
+
+  async refundPayment(input: IRefundPayment) {
+    if (!input.orderId || !input.amount || !input.transId || !input.requestId) {
+      throw new Error("Invalid input");
+    }
+    if (input?.lang) input.lang = "en";
+
+    const url = this._getURL() + "/refund";
+
+    const signatureRaw = `accessKey=${this.accessKey}&amount=${input.amount}&description=&orderId=${input.orderId}&partnerCode=${this.partnerCode}&requestId=${input.requestId}&transId=${input.transId}`;
+    const signature = crypto
+      .createHmac("sha256", this.secretKey)
+      .update(signatureRaw)
+      .digest("hex");
+
+    const data = JSON.stringify({
+      requestId: input.requestId,
+      partnerCode: this.partnerCode,
+      orderId: input.orderId,
+      amount: input.amount,
+      transId: input.transId,
+      lang: input.lang,
+      signature,
+    });
+    const res = await axios({
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      url,
+      data,
+    });
+
+    return await res.data;
   }
 
   private _getURL() {
