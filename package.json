@@ -1,8 +1,8 @@
 {
   "name": "momo-payment",
-  "version": "1.0.1",
+  "version": "1.0.3",
   "description": "payment momo lib develop by minhduc",
-  "main": "src/index.js",
+  "main": "lib/index.js",
   "scripts": {
     "dev": "npx nodemon",
     "build": "tsc"
