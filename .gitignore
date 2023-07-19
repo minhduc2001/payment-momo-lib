@@ -1,5 +1,3 @@
 .env
-/dist
 /node_modules
-server.js
-nodemon.json
+.prettierignore
