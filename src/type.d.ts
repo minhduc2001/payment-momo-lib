@@ -69,7 +69,7 @@ export interface IRefundPayment {
   subPartnerCode?: string;
   orderId: string;
   requestId: string;
-  amount: string; // Số tiền cần hoàn
+  amount: number; // Số tiền cần hoàn
   transId: string; // 	Mã giao dịch của MoMo; Đây là Id do MoMo cung cấp cho giao dịch mua thành công của hàng hóa/dịch vụ này
   lang?: string; // default 'en'
   description?: string; // Mô tả chi tiết yêu cầu hoàn tiền
