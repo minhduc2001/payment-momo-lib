@@ -88,3 +88,20 @@ export interface IResponsePayment {
   deeplink: string;
   qrCodeUrl: string;
 }
+
+// Phản hồi từ momo khi thanh toán thành công
+export interface EResponseSuccessPayment {
+  partnerCode: sring;
+  orderId: string;
+  requestId: string;
+  amount: number;
+  orderInfo: string;
+  orderType: string;
+  transId: string;
+  resultCode: number;
+  message: string;
+  payType: string;
+  responseTime: number;
+  extraData: string;
+  signature: string;
+}

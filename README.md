@@ -1,6 +1,10 @@
 ## Process flow
 
+### Create Payment
+
 ![Flow](https://raw.githubusercontent.com/minhduc2001/payment-momo-lib/128c128056ef44c7f3713d81bf8fe5b464c8240b/flow-momo.svg)
+
+![Refund](https://raw.githubusercontent.com/minhduc2001/payment-momo-lib/128c128056ef44c7f3713d81bf8fe5b464c8240b/refund-momo.svg)
 
 ## Installation
 
@@ -9,6 +13,7 @@ Use the package manager [npm](https://www.npmjs.com/) to install.
 
 ```bash
 npm i momo-payment-api
+yarn add momo-payment-api
 ```
 
 ## Usage
@@ -69,6 +74,15 @@ class MomoPaymentService {
       throw error;
     }
   }
+
+  // inpUrl: khi thanh toán thành công sẽ gọi vào api và trỏ tới service này
+  async confirmPayment(body: EResponseSuccessPayment) {
+    try {
+      // handle your code here
+    } catch (error) {
+      throw error;
+    }
+  }
 }
 ```
 
@@ -99,10 +113,48 @@ export interface IRefundPayment {
   subPartnerCode?: string;
   orderId: string;
   requestId: string;
-  amount: string; // Số tiền cần hoàn
+  amount: number; // Số tiền cần hoàn
   transId: string; // 	Mã giao dịch của MoMo; Đây là Id do MoMo cung cấp cho giao dịch mua thành công của hàng hóa/dịch vụ này
   lang?: string; // default 'en'
   description?: string; // Mô tả chi tiết yêu cầu hoàn tiền
+}
+```
+
+### Response
+
+```typescript
+// Phản hồi từ momo khi tạo payment
+export interface IResponsePayment {
+  partnerCode: string;
+  requestId: string;
+  orderId: string;
+  amount: number;
+  responseTime: number;
+  message: string;
+  resultCode: number; // O -> success
+  /*xem thêm code tại: 
+  https://developers.momo.vn/v3/vi/docs/payment/api/result-handling/resultcode/
+  */
+  payUrl: string;
+  deeplink: string;
+  qrCodeUrl: string;
+}
+
+// Phản hồi từ momo khi thanh toán thành công
+export interface EResponseSuccessPayment {
+  partnerCode: sring;
+  orderId: string;
+  requestId: string;
+  amount: number;
+  orderInfo: string;
+  orderType: string;
+  transId: string;
+  resultCode: number;
+  message: string;
+  payType: string;
+  responseTime: number;
+  extraData: string;
+  signature: string;
 }
 ```
 
