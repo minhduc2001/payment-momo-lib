@@ -1,6 +1,6 @@
 {
   "name": "momo-payment-api",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "payment momo lib develop by minhduc",
   "main": "lib/index.js",
   "types": "src/index.ts",

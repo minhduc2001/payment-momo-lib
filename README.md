@@ -78,7 +78,7 @@ class MomoPaymentService {
   }
 
   // inpUrl: khi thanh toán thành công sẽ gọi vào api và trỏ tới service này
-  async confirmPayment(body: EResponseSuccessPayment) {
+  async confirmPayment(body: IResponseSuccessPayment) {
     try {
       // handle your code here
     } catch (error) {
@@ -143,7 +143,7 @@ export interface IResponsePayment {
 }
 
 // Phản hồi từ momo khi thanh toán thành công
-export interface EResponseSuccessPayment {
+export interface IResponseSuccessPayment {
   partnerCode: sring;
   orderId: string;
   requestId: string;

@@ -90,7 +90,7 @@ export interface IResponsePayment {
 }
 
 // Phản hồi từ momo khi thanh toán thành công
-export interface EResponseSuccessPayment {
+export interface IResponseSuccessPayment {
   partnerCode: sring;
   orderId: string;
   requestId: string;
