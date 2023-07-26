@@ -6,7 +6,7 @@
 
 ### Refund Payment
 
-![Refund](https://raw.githubusercontent.com/minhduc2001/payment-momo-lib/ea39decc3b11fa5436f73f293d8d187b1a6fecef/refund-momo.svg)
+![Refund](https://raw.githubusercontent.com/minhduc2001/payment-momo-lib/e5b43a741a0c20dfedb8afe170c8a11e67b9f34e/refund-momo.svg)
 
 ## Installation
 
